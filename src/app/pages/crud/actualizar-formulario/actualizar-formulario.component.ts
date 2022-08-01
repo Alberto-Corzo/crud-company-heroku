@@ -10,7 +10,7 @@ import { CompanyModel } from '../../../models/Empresa.model';
 })
 export class ActualizarFormularioComponent implements OnInit {
 
-  company: CompanyModel = new CompanyModel();
+  empresa: CompanyModel = new CompanyModel();
 
   @Input() idCompany: string = "";
 
@@ -18,7 +18,11 @@ export class ActualizarFormularioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.companyService.getCompanies()
+    this.companyService.getCompany(this.idCompany)
+    .then((res: any) => {
+      this.empresa = res.cont.empresa;
+    })
+    .catch((arr: any) => {});
 
   }
 

@@ -16,9 +16,14 @@ export class CompanyService {
   getCompanies(){
     return lastValueFrom(this.http.get(`${this.url}`, {params: {matricula: this.matricula}}));
   }
-  getCompany(idCompany: CompanyModel){}
+  getCompany(idCompany: string){
+    return lastValueFrom(this.http.get(`${this.url}/${idCompany}`, {params: {matricula: this.matricula}}));
+  }
 
-  postCompany(){}
+  postCompany(company: CompanyModel){
+    return lastValueFrom(this.http.post(`${this.url}`, company, {params: {matricula: this.matricula}}));
+  }
+
   putCompany(){}
   delCompany(){}
 

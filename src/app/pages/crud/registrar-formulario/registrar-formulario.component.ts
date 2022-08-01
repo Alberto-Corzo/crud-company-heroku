@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { CompanyModel } from '../../../models/Empresa.model';
 import { CompanyService } from '../../../services/company.service';
 
@@ -16,15 +17,25 @@ export class RegistrarFormularioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /* 
-    this.companyService.putCompanies(this.empresa)
-    .then((res: any) => {})
-    .catch((err: any) => {});
-    */
   }
 
   registrarEmpresa(forma: NgForm){
+    this.companyService.postCompany(this.empresa)
+    .then((res: any) => {
+      Swal.fire({
+        icon:'success',
+        text: "Se registró la Empresa Exitosamente"
+      });
+    })
+    .catch((err: any) => {
+      Swal.fire({
+        icon:'error',
+        text: "Error al Registrar Empresa"
+      });
+    });
 
+    console.log(this.empresa);
+    
   }
 
   limpiarForma(forma: NgForm){

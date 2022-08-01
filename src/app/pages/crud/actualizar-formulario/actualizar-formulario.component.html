@@ -1,131 +1,66 @@
-<div class="card mt-5">
-  <!--mt es el margin en bootrap-->
-  <div class="card-header">Actualizar Empresa</div>
+<div class="card mt-5 text-white" style="background-color: #121d24;"> <!--mt es el margin en bootrap-->
+  <div class="card-header text-center">
+    Actualizar Empresa
+  </div>
   <div class="card-body">
-    <form class="row g-3" (ngSubmit)="actualizarEmpresa(forma)" #forma="ngForm">
-      <div class="col-md-6">
-        <label for="label-strNombre" class="form-label">Nombre*</label>
-        <!--<<#variable>> es la forma de declarar variables en HTML-->
-        <!--ngClass se usa para modificar clases de forma dinámica, touched devuelve true o false-->
-        <!--
-            
-            #inputStrNombre="ngModel"
-            [ngClass]="{
-            'is-invalid':
-              inputStrNombre.touched && inputStrNombre.hasError('required')
-          }"
-        -->
-        <input
-          #inputStrNombre=""
-          type="text"
+      <form class="row g-3" (ngSubmit)="actualizarEmpresa(forma)" #forma="ngForm">
+          <div class="col-md-6">
+            <label for="label-strNombre" class="form-label">Nombre*</label>
+            <!--<<#variable>> es la forma de declarar variables en HTML-->
+            <!--ngClass se usa para modificar clases de forma dinámica, touched devuelve true o false-->
+            <input #inputStrNombre="ngModel" type="text" [ngClass]="{ 'is-invalid': inputStrNombre.touched && inputStrNombre.hasError('required') }" [(ngModel)]="empresa.strNombre" name="strNombre" class="form-control" id="strNombre" placeholder="Ingresa Nombre" required>
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">
+              El Campo es Requerido
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="label-strRazonSocial" class="form-label">Rasón Social*</label>
+            <div class="input-group has-validation">
+              <input #inputStrRazonSocial="ngModel" type="text" [ngClass]="{ 'is-invalid': inputStrRazonSocial.touched && inputStrRazonSocial.hasError('required') }" [(ngModel)]="empresa.strRazonSocial" name="strRazonSocial" class="form-control" id="strRazonSocial" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" placeholder="Ingrese Rasón Social" required>
+              <div class="valid-feedback"></div>
+              <div class="invalid-feedback">
+                El Campo es Requerido
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="label-strRFC" class="form-label">RFC*</label>
+            <div class="input-group has-validation">
+              <input #inputStrRFC="ngModel" type="text" [ngClass]="{ 'is-invalid': inputStrRFC.touched && inputStrRFC.hasError('required') }" [(ngModel)]="empresa.strRFC" name="StrRFC" class="form-control" id="StrRFC" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" placeholder="Ingrese RFC" required>
+              <div class="valid-feedback"></div>
+              <div class="invalid-feedback">
+                El Campo es Requerido
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="label-strPais" class="form-label">País</label>
+            <input type="text" [(ngModel)]="empresa.strPais" name="strPais" class="form-control" id="strPais" aria-describedby="validationServer03Feedback" placeholder="Ingrese País (opcional)">
+            <div class="valid-feedback"></div>
+          </div>
+          <div class="col-md-12">
+            <label for="label-strDireccion" class="form-label">Dirección</label>
+            <input type="text" [(ngModel)]="empresa.strDireccion" name="strDireccion" class="form-control" id="strDireccion" aria-describedby="validationServer03Feedback" placeholder="Ingrese Dirección (opcional)">
+            <div class="valid-feedback"></div>
+          </div>
           
-
-          
-          name="strNombre"
-          class="form-control"
-          id="strNombre"
-          placeholder="Ingresa Nombre"
-          required
-          />
-          <!--[(ngModel)]="usuario.strNombre"-->
-
-        <div class="valid-feedback"></div>
-        <div class="invalid-feedback">El Campo es Requerido</div>
-      </div>
-      <div class="col-md-6">
-        <label for="label-strPrimerApellido" class="form-label"
-          >Primer Apellido*</label
-        >
-        <!--
-            #inputStrPrimerApellido="ngModel"
-            [ngClass]="{
-              'is-invalid':
-                inputStrPrimerApellido.touched &&
-                inputStrPrimerApellido.hasError('required')
-            }"
-        -->
-        <div class="input-group has-validation">
-          <input
-            #inputStrPrimerApellido=""
-            type="text"
-            
-            
-            name="strPrimerApellido"
-            class="form-control"
-            id="strPrimerApellido"
-            aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
-            placeholder="Ingrese Primer Apellido"
-            required
-          />
-          <!--[(ngModel)]="usuario.strPrimerApellido"-->
-          <div class="valid-feedback"></div>
-          <div class="invalid-feedback">El Campo es Requerido</div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label for="label-strSegundoApellido" class="form-label"
-          >Segundo Apellido</label
-        >
-        <input
-          type="text"
-          
-          name="strSegundoApellido"
-          class="form-control"
-          id="strSegundoApellido"
-          aria-describedby="validationServer03Feedback"
-          placeholder="Ingrese Segundo Apellido (opcional)"
-        />
-        <!--[(ngModel)]="usuario.strSegundoApellido"-->
-        <div class="valid-feedback"></div>
-      </div>
-      <div class="col-md-6">
-        <label for="label-nmbEdad" class="form-label">Edad*</label>
-        <!--
-            #inputNmbEdad="ngModel"
-            [ngClass]="{
-            'is-invalid':
-              inputNmbEdad.touched && inputNmbEdad.hasError('required')
-          }"
-        -->
-        <input
-          #inputNmbEdad=""
-          type="number"
-          
-          
-          min="0"
-          max="99"
-          class="form-control"
-          name="nmbEdad"
-          id="nmbEdad"
-          aria-describedby="validationServer05Feedback"
-          placeholder="Ingrese Edad"
-          required
-        />
-        <!--[(ngModel)]="usuario.nmbEdad"-->
-        <div class="valid-feedback"></div>
-        <div id="validationServer05Feedback" class="invalid-feedback">
-          Porfavor ingrese una edad válida
-        </div>
-      </div>
-
-      <div class="col-12">
-        <!--[disabled] desactiva el boton SI forma es invalido-->
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="forma.invalid"
-        >
-          Actualizar
-        </button>
-        <button
-          style="margin-left: 1em"
-          class="btn btn-danger"
-          type="button"
-          (click)="limpiarForma(forma)"
-        >
-          Limpiar
-        </button>
-      </div>
-    </form>
+          <div class="col-md-12">
+            <label for="label-strRFC" class="form-label">Logo*</label>
+            <div class="input-group has-validation">
+              <input #inputStrUrlLogo="ngModel" type="text" [ngClass]="{ 'is-invalid': inputStrUrlLogo.touched && inputStrUrlLogo.hasError('required') }" [(ngModel)]="empresa.strUrlLogo" name="strUrlLogo" class="form-control" id="strUrlLogo" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" placeholder="Ingrese URL Logo" required>
+              <div class="valid-feedback"></div>
+              <div class="invalid-feedback">
+                El Campo es Requerido
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <!--[disabled] desactiva el boton SI forma es invalido-->
+            <button class="btn btn-primary" type="submit" [disabled]="forma.invalid">Actualizar</button>
+            <button style="margin-left: 1em;" class="btn btn-danger" type="button" (click)="limpiarForma(forma)">Limpiar</button>
+          </div>
+        </form>
   </div>
 </div>
+

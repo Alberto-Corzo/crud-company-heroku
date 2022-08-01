@@ -14,10 +14,11 @@ export class CrudComponent implements OnInit {
   empresas: CompanyModel [] = [];
 
   idEmpresa: string = "";
-
+  
   constructor(private readonly companyService: CompanyService) { }
-
+  
   ngOnInit(): void {
+    
     this.companyService.getCompanies()
     .then((res: any) => {
       this.empresas = res.cont.empresas;
@@ -33,8 +34,21 @@ export class CrudComponent implements OnInit {
     });
   }
 
-  showUpdate(){
+  showUpdate(idCompany: any){
+    this.idEmpresa = idCompany;
     this.mostrarAct = !this.mostrarAct;
     //this.mostrarAct = true;
   }
+
+  /* 
+  */
+  showLogo(urlLogo: string){
+    Swal.fire({
+      imageUrl: urlLogo,
+      imageWidth: 300,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    })
+  }
+  
 }
