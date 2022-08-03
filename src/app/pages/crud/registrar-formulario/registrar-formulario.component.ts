@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CompanyModel } from '../../../models/Empresa.model';
@@ -13,6 +13,8 @@ export class RegistrarFormularioComponent implements OnInit {
 
   empresa: CompanyModel = new CompanyModel();
 
+  @Output() emitterRegistro: EventEmitter<any> = new EventEmitter();
+
   constructor(private readonly companyService: CompanyService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,9 @@ export class RegistrarFormularioComponent implements OnInit {
         icon:'success',
         text: "Se registró la Empresa Exitosamente"
       });
+      forma.reset();
+      // emitir trigger para activar obtenerEmpresas()
+      this.emitterRegistro.emit();
     })
     .catch((err: any) => {
       Swal.fire({
